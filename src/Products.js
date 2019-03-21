@@ -24,7 +24,6 @@ export default class Products extends Component {
             .then(response => response.data)
             .then(data => {
                 this.setState({productList: data.rows})
-                this.props.countAllProducts(data.count);
             })
     }
     

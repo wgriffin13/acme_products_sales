@@ -1,14 +1,14 @@
 import React from 'react'
 
-const CreateForm = ({handleSubmit, handleChange}) => {
+const CreateForm = ({handleSubmit, handleChange, history}) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event) => handleSubmit({event, history})}>
             <div className="mt-2">
-                <labal htmlFor='name'>Name</labal>
+                <labal htmlFor='nameLabel'>Name</labal>
                 <input name='name' type='text' className='form-control' onChange={handleChange} />
             </div>
             <div className="mt-2">
-                <label htmlFor='price'>Price</label>
+                <label htmlFor='priceLabel'>Price</label>
                 <input name='price' type='text' className='form-control' onChange={handleChange} />
             </div>
             <div className="mt-2">
@@ -23,7 +23,7 @@ const CreateForm = ({handleSubmit, handleChange}) => {
                     <option>discontinued</option>
                 </select>
             </div>
-            <button className="mt-2 btn btn-primary" disabled type="submit">Create</button>
+            <button className="mt-2 btn btn-primary" type="submit">Create</button>
         </form>
     )
 }
