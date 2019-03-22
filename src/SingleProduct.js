@@ -8,7 +8,7 @@ const SingleProduct = ({item, deleteProduct}) => {
             <br />
             <span style={(item.discountedPercent > 0) ? {textDecoration: 'line-through'} : {}}>${item.price}</span>
             <div>
-                {(item.discountedPercent > 0) ? <span className="badge badge-success">${item.discountedPercent * item.price}</span> : ''}
+                {(item.discountedPercent > 0) ? <span className="badge badge-success">${item.price - item.discountedPercent * item.price}</span> : ''}
             </div>
             <span className={(item.availability==='instock') ? "badge badge-success" : "badge badge-warning"} style={{marginBottom: "5px"}}>{item.availability}</span>
             <br />

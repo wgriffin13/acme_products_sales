@@ -22,7 +22,9 @@ export default class App extends React.Component {
     }
 
     adjustCount(countType) {
-        this.setState({countType: this.state[countType] - 1})
+        this.setState({[countType]: this.state[countType] - 1})
+        console.log(this.state)
+        console.log(countType)
     }
 
     componentDidMount() {
@@ -30,9 +32,7 @@ export default class App extends React.Component {
             axios.get('/api/products/sales')])
             .then(values => {
                 this.setState({productCnt: values[0].data.count})
-                console.log(this.state.productCnt)
                 this.setState({salesCnt: values[1].data.count})
-                console.log(this.state.salesCnt)
             })
     }
 
@@ -42,8 +42,10 @@ export default class App extends React.Component {
             .then(res => res.data)
             .then(data => {
                 if (data.discountedPercent > 0) {
+                    this.setState({salesCnt: this.state.salesCnt + 1})
                     history.push('/products/sales')
                 } else {
+                    this.setState({productCnt: this.state.productCnt + 1})
                     history.push('/products')
                 }
             })
@@ -62,7 +64,7 @@ export default class App extends React.Component {
                     <Nav productCnt={this.state.productCnt} salesCnt={this.state.salesCnt} />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/products" render={() => <Products adjustCount={this.adjustCount} />} />
-                    <Route exact path="/products/sales" render={() => <Sales />} />
+                    <Route exact path="/products/sales" render={() => <Sales adjustCount={this.adjustCount} />} />
                     <Route exact path="/products/create" render={({history}) => <CreateForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} history={history} /> } />
                 </div>
             </HashRouter>

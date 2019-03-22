@@ -15,6 +15,7 @@ export default class Products extends Component {
         axios.delete('api/products/' + productId)
           .then(res => res.data)
           .then(() => {
+            this.props.adjustCount('productCnt');
             this.setState({productList: this.state.productList.filter(item => item.id !== productId)})
           })
       }
