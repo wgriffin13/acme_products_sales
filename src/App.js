@@ -6,7 +6,6 @@ import Products from './Products'
 import Sales from './Sales'
 import CreateForm from './CreateForm'
 import axios from 'axios'
-import { throws } from 'assert';
 
 export default class App extends React.Component {
 
